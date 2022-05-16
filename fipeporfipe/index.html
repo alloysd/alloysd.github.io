@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://unpkg.com/vue@3"></script>
     <script src="https://www.tabelafipebrasil.com/api/js/tabelafipe-widget.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
     <title>Fipe por Fipe App</title>
   </head>
   <body>
@@ -22,41 +23,71 @@
       <div id="veiculoA" class="tfb-query" data-style="2"></div>
       <p>Veículo B</p>
       <div id="veiculoB" class="tfb-query" data-style="2"></div>
-      <button @click="compareVehicles()">
-        Comparar Veículos
-      </button>
+      <button @click="compareVehicles()">Comparar Veículos</button>
+
+      <canvas id="fipeChart" width="600" height="400"></canvas>
     </div>
     <script>
       Vue.createApp({
         data() {
           return {
             appTitle: "Fipe por Fipe Web App!",
-            comparedValue: undefined
+            comparedValue: undefined,
           };
         },
         methods: {
           compareVehicles() {
-            let values = [] //clear the array
-            document.querySelectorAll('.tfb-price')
-            document.querySelectorAll('.tfb-price').forEach(p => {
-                if(p.textContent === '') {
-                    alert('Selecione os dois veículos (A e B) para fazer a comparação.')
-                    return
-                }
-                values.push(p.textContent)
-            })
-            //compara os valores
-            let valueA = this.getMoney(values[0])
-            let valueB = this.getMoney(values[1])
-            this.comparedValue = Math.max(valueA, valueB) - Math.min(valueA, valueB)
-            console.log(this.comparedValue)
-            let f = this.comparedValue.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
-            console.log(f)
+            let values = []; //clear the array
+            document.querySelectorAll(".tfb-price").forEach((p) => {
+              values.push(p.textContent);
+            });
+            //validate if any is empty
+            if (values.find((v) => v === "") == "") {
+              alert(
+                "Selecione os dois veículos (A e B) para fazer a comparação."
+              );
+              return;
+            }
+            this.compareValues(values);
+          },
+          compareValues(values) {
+            //compare values
+            let valueA = this.getMoney(values[0]);
+            let valueB = this.getMoney(values[1]);
+            this.comparedValue =
+              Math.max(valueA, valueB) - Math.min(valueA, valueB);
+            console.log(this.comparedValue);
+            let f = this.comparedValue.toLocaleString("pt-br", {
+              style: "currency",
+              currency: "BRL",
+            });
+            console.log(f);
+            this.generateChart(valueA, valueB)
           },
           getMoney(value) {
-            return parseInt(value.replace(/[\D]+/g,'')) / 100
-          }
-        }
+            return parseInt(value.replace(/[\D]+/g, "")) / 100
+          },
+          generateChart(val1, val2) {
+            const labelA = document.querySelector('#veiculoA > div > div.tfb-div-sel.tfb-div-modelo > select.tfb-sel').selectedOptions[0].innerText;
+            const labelB = document.querySelector('#veiculoB > div > div.tfb-div-sel.tfb-div-modelo > select.tfb-sel').selectedOptions[0].innerText;
+            var data = [
+              {
+                value: val1,
+                color: "#F7464A",
+                highlight: "#FF5A5E",
+                label: labelA
+              },
+              {
+                value: val2,
+                color: "#46BFBD",
+                highlight: "#5AD3D1",
+                label: labelB
+              }
+            ]
+            var ctx = document.getElementById("fipeChart").getContext("2d")
+            new Chart(ctx).Pie(data)
+          },
+        },
       }).mount("#app");
     </script>
   </body>
