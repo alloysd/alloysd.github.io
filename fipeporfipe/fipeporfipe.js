@@ -27,7 +27,7 @@ Vue.createApp({
           style: "currency",
           currency: "BRL",
         });
-        console.log(this.comparedValue)
+        console.log(`Diferença de valores: ${this.comparedValue}`)
         this.generateChart(valueA, valueB)
       },
       getMoney(value) {
