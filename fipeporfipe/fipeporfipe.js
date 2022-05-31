@@ -3,14 +3,14 @@ Vue.createApp({
       return {
         appTitle: "Fipe por Fipe Web App!",
         comparedValue: undefined,
-      };
+      }
     },
     methods: {
       compareVehicles() {
-        let values = []; //clear the array
+        let values = [] //clear the array
         document.querySelectorAll(".tfb-price").forEach((p) => {
-          values.push(p.textContent);
-        });
+          values.push(p.textContent)
+        })
         //validate if any is empty
         if (values.find((v) => v === "") == "") {
           alert("Selecione os dois veículos (A e B) para fazer a comparação.")
@@ -26,7 +26,7 @@ Vue.createApp({
         this.comparedValue = diffValue.toLocaleString("pt-br", {
           style: "currency",
           currency: "BRL",
-        });
+        })
         console.log(`Diferença de valores: ${this.comparedValue}`)
         this.generateChart(valueA, valueB)
       },
@@ -34,8 +34,8 @@ Vue.createApp({
         return parseInt(value.replace(/[\D]+/g, "")) / 100
       },
       generateChart(val1, val2) {
-        const labelA = document.querySelector('#veiculoA > div > div.tfb-div-sel.tfb-div-modelo > select.tfb-sel').selectedOptions[0].innerText;
-        const labelB = document.querySelector('#veiculoB > div > div.tfb-div-sel.tfb-div-modelo > select.tfb-sel').selectedOptions[0].innerText;
+        const labelA = document.querySelector('#veiculoA > div > div.tfb-div-sel.tfb-div-modelo > select.tfb-sel').selectedOptions[0].innerText
+        const labelB = document.querySelector('#veiculoB > div > div.tfb-div-sel.tfb-div-modelo > select.tfb-sel').selectedOptions[0].innerText
         var data = [
           {
             value: val1,
@@ -54,4 +54,4 @@ Vue.createApp({
         new Chart(ctx).Pie(data)
       },
     },
-  }).mount("#app");
+  }).mount("#app")

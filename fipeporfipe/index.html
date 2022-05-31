@@ -7,6 +7,7 @@
     <script src="https://unpkg.com/vue@3"></script>
     <script src="https://www.tabelafipebrasil.com/api/js/tabelafipe-widget.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+    <link rel="stylesheet" href="chart.css"/>
     <title>Fipe por Fipe Web</title>
   </head>
   <body>
@@ -21,7 +22,7 @@
         <br/>
         <p v-if="comparedValue">Diferença de valor: {{ comparedValue }}</p>
         <br/>
-        <canvas id="fipeChart"></canvas>
+        <canvas class="chart" width="450" height="450" id="fipeChart"></canvas>
       </div>
     </div>
     <script src="fipeporfipe.js"></script>
