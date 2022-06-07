@@ -4,19 +4,19 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://unpkg.com/vue@3"></script>
+    <script src="js/vuejs.3.2.37.prod.js"></script>
     <script src="https://www.tabelafipebrasil.com/api/js/tabelafipe-widget.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
-    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
     <title>Fipe por Fipe Web</title>
   </head>
   <body>
     <div id="app">
       {{ appTitle }}
       <p>Veículo A</p>
-      <div id="veiculoA" class="tfb-query" data-style="2"></div>
+      <div id="veiculoA" class="tfb-query" data-style="1"></div>
       <p>Veículo B</p>
-      <div id="veiculoB" class="tfb-query" data-style="2"></div>
+      <div id="veiculoB" class="tfb-query" data-style="1"></div>
       <div class="tfb-stylebase">
         <button @click="compareVehicles()">Comparar Veículos</button>
         <br/>
@@ -25,6 +25,6 @@
         <canvas class="chart" width="450" height="450" id="fipeChart"></canvas>
       </div>
     </div>
-    <script src="fipeporfipe.js"></script>
+    <script src="js/fipeporfipe.js"></script>
   </body>
 </html>
