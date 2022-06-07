@@ -34,8 +34,12 @@ Vue.createApp({
         return parseInt(value.replace(/[\D]+/g, "")) / 100
       },
       generateChart(val1, val2) {
-        const labelA = document.querySelector('#veiculoA > div > div.tfb-div-sel.tfb-div-modelo > select.tfb-sel').selectedOptions[0].innerText
-        const labelB = document.querySelector('#veiculoB > div > div.tfb-div-sel.tfb-div-modelo > select.tfb-sel').selectedOptions[0].innerText
+        let labelA = document.querySelector('#veiculoA > div > div.tfb-div-sel.tfb-div-modelo > select.tfb-sel').selectedOptions[0].innerText
+        let labelB = document.querySelector('#veiculoB > div > div.tfb-div-sel.tfb-div-modelo > select.tfb-sel').selectedOptions[0].innerText
+        if (labelA == labelB) {
+          labelA += " (A)"
+          labelB += " (B)"
+        }
         var data = [
           {
             value: val1,
