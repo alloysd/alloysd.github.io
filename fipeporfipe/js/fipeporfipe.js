@@ -42,10 +42,7 @@ Vue.createApp({
         }
         const ctx = document.getElementById("fipeChart").getContext("2d")
         const data = {
-          labels: [
-            'Red',
-            'Blue'
-          ],
+          labels: [labelA, labelB],
           datasets: [{
             label: 'Comparativo de valores',
             data: [val1, val2],
