@@ -40,22 +40,35 @@ Vue.createApp({
           labelA += " (A)"
           labelB += " (B)"
         }
-        var data = [
-          {
-            value: val1,
-            color: "#F7464A",
-            highlight: "#FF5A5E",
-            label: labelA
-          },
-          {
-            value: val2,
-            color: "#46BFBD",
-            highlight: "#5AD3D1",
-            label: labelB
+        const ctx = document.getElementById("fipeChart").getContext("2d")
+        const chart = new Chart(ctx, {
+          type: 'doughnut',
+          data: [
+            {
+              value: val1,
+              color: "#F7464A",
+              highlight: "#FF5A5E",
+              label: labelA
+            },
+            {
+              value: val2,
+              color: "#46BFBD",
+              highlight: "#5AD3D1",
+              label: labelB
+            }
+          ],
+          options: {
+            plugins: {
+              title: {
+                display: true,
+                text: 'Chart Title'
+              }
+            },
+            layout: {
+              padding: 20
+            }
           }
-        ]
-        var ctx = document.getElementById("fipeChart").getContext("2d")
-        new Chart(ctx).Pie(data)
+      })
       },
     },
   }).mount("#app")
