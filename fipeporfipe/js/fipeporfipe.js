@@ -41,27 +41,29 @@ Vue.createApp({
           labelB += " (B)"
         }
         const ctx = document.getElementById("fipeChart").getContext("2d")
+        const data = {
+          labels: [
+            'Red',
+            'Blue'
+          ],
+          datasets: [{
+            label: 'Comparativo de valores',
+            data: [val1, val2],
+            backgroundColor: [
+              'rgb(255, 99, 132)',
+              'rgb(54, 162, 235)'
+            ],
+            hoverOffset: 4
+          }]
+        };
         const chart = new Chart(ctx, {
           type: 'doughnut',
-          data: [
-            {
-              value: val1,
-              color: "#F7464A",
-              highlight: "#FF5A5E",
-              label: labelA
-            },
-            {
-              value: val2,
-              color: "#46BFBD",
-              highlight: "#5AD3D1",
-              label: labelB
-            }
-          ],
+          data: data,
           options: {
             plugins: {
               title: {
                 display: true,
-                text: 'Chart Title'
+                text: 'Gráfico de valores'
               }
             },
             layout: {
