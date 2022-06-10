@@ -2,7 +2,7 @@ Vue.createApp({
   data() {
     return {
       appTitle: "Fipe por Fipe Web App!",
-      comparedValue: undefined,
+      comparedValue: undefined
     };
   },
   methods: {
